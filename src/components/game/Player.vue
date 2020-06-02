@@ -1,21 +1,13 @@
 <template>
   <div
     :id="id"
-    class="circle"
+    class="player"
+    :class="oclass"
     draggable
     @ondrag.prevent
     @dragstart="startDrag($event, id)"
   >
-    <svg width="50" height="50">
-      <circle
-        cx="25"
-        cy="25"
-        r="24"
-        stroke="black"
-        stroke-width="1"
-        fill="white"
-      />
-    </svg>
+    <img :src="isrc()" alt="" />
   </div>
 </template>
 
@@ -24,6 +16,7 @@ export default {
   name: "Player",
   props: {
     id: String,
+    value: Number,
   },
   methods: {
     startDrag: (evt, id) => {
@@ -31,16 +24,24 @@ export default {
       evt.dataTransfer.effectAllowed = "move";
       evt.dataTransfer.setData("pid", id);
     },
+    isrc: function() {
+      return require("./../../assets/" + "q" + this.value + ".png");
+    },
+  },
+  computed: {
+    oclass: function() {
+      return "p" + this.value;
+    },
   },
 };
 </script>
 
-<style>
-.circle {
+<style scoped>
+.player {
   cursor: pointer;
   position: absolute;
-  width: 50px;
-  height: 50px;
+  width: 80px;
+  height: 80px;
   top: 200px;
   left: 200px;
   border-radius: 99px;
