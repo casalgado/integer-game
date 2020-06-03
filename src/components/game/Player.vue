@@ -25,7 +25,7 @@ export default {
       evt.dataTransfer.setData("pid", id);
     },
     isrc: function() {
-      return require("./../../assets/" + "q" + this.value + ".png");
+      return require("./../../assets/" + "y" + this.value + ".png");
     },
   },
   computed: {
