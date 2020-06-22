@@ -5,9 +5,22 @@
     @dragover.prevent
     @dragenter.prevent
   >
-    <div v-for="obj in fieldState" :key="obj.id">
-      <Player :id="obj.id" :value="obj.value" />
+    <div
+      v-for="obj in fieldState.dropZones"
+      :key="obj.id"
+      :id="obj.id"
+      class="drop-zone"
+      :style="zoneCoordinates(obj)"
+    >
+      <p>{{ obj.name }}</p>
     </div>
+
+    <Player
+      v-for="obj in fieldState.integers"
+      :key="obj.id"
+      :id="obj.id"
+      :value="obj.value"
+    />
   </div>
 </template>
 
@@ -21,39 +34,80 @@ export default {
   },
   data() {
     return {
-      fieldState: [
-        { id: "o0", value: 1, x: 100, y: 100 },
-        { id: "o1", value: 1, x: 200, y: 100 },
-        { id: "o2", value: 1, x: 300, y: 100 },
-        { id: "o3", value: 1, x: 400, y: 100 },
-        { id: "o4", value: 1, x: 500, y: 100 },
-        { id: "o5", value: 1, x: 100, y: 200 },
-        { id: "o6", value: 1, x: 200, y: 200 },
-        { id: "o7", value: 1, x: 300, y: 200 },
-        { id: "o8", value: 1, x: 400, y: 200 },
-        { id: "o9", value: 1, x: 500, y: 200 },
-      ],
+      fieldState: {
+        integers: [
+          { id: "o0", value: -1, x: 300, y: 100 },
+          { id: "o1", value: -1, x: 400, y: 100 },
+          { id: "o2", value: -1, x: 500, y: 100 },
+          { id: "o3", value: -1, x: 600, y: 100 },
+          { id: "o4", value: -1, x: 700, y: 100 },
+          { id: "o5", value: 1, x: 300, y: 200 },
+          { id: "o6", value: 1, x: 400, y: 200 },
+          { id: "o7", value: 1, x: 500, y: 200 },
+          { id: "o8", value: 1, x: 600, y: 200 },
+          { id: "o9", value: 1, x: 700, y: 200 },
+        ],
+        dropZones: [
+          { id: "add", name: "addition", x1: 50, y1: 50, x2: 450, y2: 350 },
+          { id: "sub", name: "subtraction", x1: 550, y1: 50, x2: 950, y2: 350 },
+          {
+            id: "mul",
+            name: "multiplication",
+            x1: 50,
+            y1: 450,
+            x2: 450,
+            y2: 750,
+          },
+          { id: "div", name: "division", x1: 550, y1: 450, x2: 950, y2: 750 },
+        ],
+      },
     };
   },
+
   methods: {
     onDrop: function(evt) {
       const pid = evt.dataTransfer.getData("pid");
-      let obj = this.fieldState.find((o) => o.id === pid);
-      obj.y = evt.clientY - 40;
-      obj.x = evt.clientX - 40;
-      let colliding = this.returnPairsOfCollidingObjects();
-      if (colliding) {
-        this.add(colliding[0], colliding[1]);
+      let obj = this.fieldState.integers.find((o) => o.id === pid);
+      let bounds = document.getElementById("main").getBoundingClientRect();
+      obj.y =
+        evt.clientY - bounds.top - parseInt(evt.dataTransfer.getData("yoff"));
+      obj.x =
+        evt.clientX - bounds.left - parseInt(evt.dataTransfer.getData("xoff"));
+
+      let target = this.returnCollidingObject(obj);
+      if (target) {
+        const zone = this.getZone(target);
+        console.log(zone);
       }
-      this.draw();
+
+      this.drawIntegers();
     },
-    draw: function() {
-      for (let i = 0; i < this.fieldState.length; i++) {
-        let obj = this.fieldState[i];
+    drawIntegers: function() {
+      for (let i = 0; i < this.fieldState.integers.length; i++) {
+        let obj = this.fieldState.integers[i];
         const domObj = document.getElementById(obj.id);
         domObj.style.top = `${obj.y}px`;
         domObj.style.left = `${obj.x}px`;
       }
+    },
+    getCenter: function(obj) {
+      return { x: obj.x + 40, y: obj.y + 40 };
+    },
+    getZone: function(target) {
+      let zones = this.fieldState.dropZones;
+      let center = this.getCenter(target);
+      for (let i = 0; i < zones.length; i++) {
+        if (
+          center.x - zones[i].x1 > 0 &&
+          center.x - zones[i].x1 < zones[i].x2 - zones[i].x1 &&
+          center.y - zones[i].y1 > 0 &&
+          center.y - zones[i].y1 < zones[i].y2 - zones[i].y1
+        ) {
+          console.log(`${zones[i].name}`);
+          return zones[i].name;
+        }
+      }
+      return null;
     },
     objectsCollide: function(a, b) {
       if (Math.abs(a.x - b.x) < 80 && Math.abs(a.y - b.y) < 80) {
@@ -63,7 +117,7 @@ export default {
       }
     },
     returnPairsOfCollidingObjects: function() {
-      let array = this.fieldState;
+      let array = this.fieldState.integers;
       let colliding = [];
       for (let i = 0; i < array.length; i++) {
         for (let j = 0; j < array.length; j++) {
@@ -76,11 +130,33 @@ export default {
       }
       return colliding[0] || null;
     },
+    returnCollidingObject: function(obj) {
+      let all = this.fieldState.integers;
+      let centerCoordinates = this.getCenter(obj);
+      for (let i = 0; i < all.length; i++) {
+        const center = this.getCenter(all[i]);
+        if (
+          obj.id !== all[i].id &&
+          Math.abs(center.x - centerCoordinates.x) < 80 &&
+          Math.abs(center.y - centerCoordinates.y) < 80
+        )
+          return all[i];
+      }
+      return null;
+    },
+    zoneCoordinates: function(obj) {
+      let t = obj.y1;
+      let l = obj.x1;
+      let h = obj.y2 - obj.y1;
+      let w = obj.x2 - obj.x1;
+
+      return `width: ${w}px; height: ${h}px; top: ${t}px; left: ${l}px;`;
+    },
     add: function(a, b) {
-      this.fieldState = this.fieldState.filter((e) => {
+      this.fieldState.integers = this.fieldState.integers.filter((e) => {
         return e.id !== a.id && e.id !== b.id;
       });
-      this.fieldState.push({
+      this.fieldState.integers.push({
         id: "",
         value: a.value + b.value,
         x: a.x,
@@ -88,23 +164,27 @@ export default {
       });
       console.log(a);
       console.log(b);
-      this.fieldState.map((e, i) => {
+      this.fieldState.integers.map((e, i) => {
         e.id = "o" + i;
         return e;
       });
     },
   },
   mounted() {
-    this.draw();
+    this.drawIntegers();
   },
 };
 </script>
 
 <style>
 .field {
+  position: relative;
   height: 800px;
-  width: 1000px;
-  border: 1px solid black;
-  background-color: gray;
+  background-color: lightblue;
+}
+
+.drop-zone {
+  position: absolute;
+  border: 1px solid white;
 }
 </style>
