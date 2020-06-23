@@ -36,16 +36,16 @@ export default {
     return {
       fieldState: {
         integers: [
-          { id: "o0", value: -1, x: 300, y: 100 },
-          { id: "o1", value: -1, x: 400, y: 100 },
-          { id: "o2", value: -1, x: 500, y: 100 },
-          { id: "o3", value: -1, x: 600, y: 100 },
+          { id: "o0", value: -3, x: 200, y: 100 },
+          { id: "o1", value: -3, x: 600, y: 200 },
+          { id: "o2", value: -5, x: 700, y: 600 },
+          { id: "o3", value: -2, x: 200, y: 600 },
           { id: "o4", value: -1, x: 700, y: 100 },
-          { id: "o5", value: 1, x: 300, y: 200 },
-          { id: "o6", value: 1, x: 400, y: 200 },
-          { id: "o7", value: 1, x: 500, y: 200 },
-          { id: "o8", value: 1, x: 600, y: 200 },
-          { id: "o9", value: 1, x: 700, y: 200 },
+          { id: "o5", value: 2, x: 300, y: 200 },
+          { id: "o6", value: 2, x: 100, y: 200 },
+          { id: "o7", value: 9, x: 200, y: 500 },
+          { id: "o8", value: 6, x: 700, y: 500 },
+          { id: "o9", value: 10, x: 800, y: 200 },
         ],
         dropZones: [
           { id: "add", name: "addition", x1: 50, y1: 50, x2: 450, y2: 350 },
@@ -77,9 +77,37 @@ export default {
       let target = this.returnCollidingObject(obj);
       if (target) {
         const zone = this.getZone(target);
+        if (zone) {
+          this.compute(target, obj, zone);
+        }
         console.log(zone);
       }
 
+      this.drawIntegers();
+    },
+    compute(target, object, zone) {
+      let newValue;
+      switch (zone) {
+        case "addition":
+          newValue = target.value + object.value;
+          break;
+        case "subtraction":
+          newValue = target.value - object.value;
+          break;
+        case "multiplication":
+          newValue = target.value * object.value;
+          break;
+        case "division":
+          newValue = target.value / object.value;
+          break;
+
+        default:
+          break;
+      }
+      target.value = newValue;
+      this.fieldState.integers = this.fieldState.integers.filter(
+        (e) => e.id !== object.id
+      );
       this.drawIntegers();
     },
     drawIntegers: function() {

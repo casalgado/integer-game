@@ -38,7 +38,8 @@ export default {
   },
   computed: {
     oclass: function() {
-      return "p" + this.value;
+      let polarity = this.value < 0 ? "n" : "p";
+      return "class-" + polarity;
     },
     text: function() {
       if (this.value > 0) {
@@ -73,5 +74,9 @@ p {
   text-align: center;
   vertical-align: middle;
   color: rgb(100, 100, 100);
+}
+
+.class-n p {
+  color: rgb(200, 200, 200);
 }
 </style>
