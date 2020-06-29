@@ -1,9 +1,16 @@
 <template>
   <div id="app">
-    <div id="sidebar"></div>
+    <Sidebar />
     <router-view id="main"> </router-view>
   </div>
 </template>
+<script>
+import Sidebar from "./components/ui/Sidebar";
+export default {
+  name: "App",
+  components: { Sidebar },
+};
+</script>
 
 <style>
 #app {
