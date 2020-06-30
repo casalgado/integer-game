@@ -69,6 +69,8 @@ export default new Vuex.Store({
   },
   mutations: {
     loadState(state, payload) {
+      state.integers = [];
+      state.dropZones = [];
       state.integers = payload.integers;
       state.dropZones = payload.dropZones;
     },
