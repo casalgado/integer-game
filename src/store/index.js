@@ -6,16 +6,11 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     integers: [
-      { id: "o0", value: -3, x: 200, y: 100, active: true },
-      { id: "o1", value: -3, x: 600, y: 200, active: true },
-      { id: "o2", value: -5, x: 700, y: 600, active: true },
-      { id: "o3", value: -2, x: 200, y: 600, active: true },
-      { id: "o4", value: -1, x: 700, y: 100, active: true },
-      { id: "o5", value: 2, x: 300, y: 200, active: true },
-      { id: "o6", value: 2, x: 100, y: 200, active: true },
-      { id: "o7", value: 9, x: 200, y: 500, active: true },
-      { id: "o8", value: 6, x: 700, y: 500, active: true },
-      { id: "o9", value: 10, x: 800, y: 200, active: true },
+      { id: "o0", value: 2, x: 460, y: 150, active: true },
+      { id: "o1", value: 1, x: 460, y: 250, active: true },
+      { id: "o2", value: 0, x: 460, y: 350, active: true },
+      { id: "o3", value: -1, x: 460, y: 450, active: true },
+      { id: "o4", value: -2, x: 460, y: 550, active: true },
     ],
     dropZones: [
       {

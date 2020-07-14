@@ -20,11 +20,6 @@
         Exercise 4
       </button>
     </li>
-    <li>
-      <button @click="exercise5">
-        Exercise 5
-      </button>
-    </li>
   </ul>
 </template>
 
@@ -35,18 +30,36 @@ export default {
     exercise1: function() {
       let payload = {
         integers: [
-          { id: "o0", value: -1, x: 460, y: 60, active: true },
-          { id: "o1", value: 2, x: 460, y: 260, active: true },
-          { id: "o2", value: -4, x: 460, y: 460, active: true },
-          { id: "o3", value: 8, x: 460, y: 660, active: true },
+          { id: "o0", value: 8, x: 460, y: 60, active: true },
+          { id: "o1", value: 4, x: 460, y: 260, active: true },
+          { id: "o2", value: -3, x: 460, y: 460, active: true },
+          { id: "o3", value: -5, x: 460, y: 660, active: true },
         ],
         dropZones: [
+          {
+            id: "add",
+            operation: "addition",
+            name: "addition",
+            x1: 50,
+            y1: 50,
+            x2: 450,
+            y2: 350,
+          },
+          {
+            id: "sub",
+            operation: "subtraction",
+            name: "subtraction",
+            x1: 550,
+            y1: 50,
+            x2: 950,
+            y2: 350,
+          },
           {
             id: "mul",
             operation: "multiplication",
             name: "multiplication",
             x1: 50,
-            y1: 50,
+            y1: 450,
             x2: 450,
             y2: 750,
           },
@@ -55,7 +68,7 @@ export default {
             operation: "division",
             name: "division",
             x1: 550,
-            y1: 50,
+            y1: 450,
             x2: 950,
             y2: 750,
           },
@@ -78,14 +91,32 @@ export default {
             name: "addition",
             x1: 50,
             y1: 50,
-            x2: 950,
+            x2: 450,
             y2: 350,
           },
           {
             id: "sub",
             operation: "subtraction",
             name: "subtraction",
+            x1: 550,
+            y1: 50,
+            x2: 950,
+            y2: 350,
+          },
+          {
+            id: "mul",
+            operation: "multiplication",
+            name: "multiplication",
             x1: 50,
+            y1: 450,
+            x2: 450,
+            y2: 750,
+          },
+          {
+            id: "div",
+            operation: "division",
+            name: "division",
+            x1: 550,
             y1: 450,
             x2: 950,
             y2: 750,
@@ -94,14 +125,15 @@ export default {
       };
       this.$store.commit("loadState", payload);
     },
-
     exercise3: function() {
       let payload = {
         integers: [
-          { id: "o1", value: 5, x: 460, y: 460, active: true },
-          { id: "o2", value: 4, x: 460, y: 260, active: true },
-          { id: "o3", value: -3, x: 335, y: 360, active: true },
-          { id: "o4", value: -2, x: 585, y: 360, active: true },
+          { id: "o0", value: 8, x: 460, y: 60, active: true },
+          { id: "o1", value: 4, x: 460, y: 260, active: true },
+          { id: "o2", value: 1, x: 335, y: 360, active: true },
+          { id: "o3", value: -2, x: 585, y: 360, active: true },
+          { id: "o4", value: -3, x: 460, y: 460, active: true },
+          { id: "o5", value: -5, x: 460, y: 660, active: true },
         ],
         dropZones: [
           {
@@ -147,64 +179,10 @@ export default {
     exercise4: function() {
       let payload = {
         integers: [
-          { id: "o1", value: 3, x: 460, y: 260, active: true },
-          { id: "o2", value: -3, x: 460, y: 460, active: true },
-          { id: "o3", value: -4, x: 460, y: 660, active: true },
-          { id: "o4", value: 1, x: 335, y: 360, active: true },
-          { id: "o5", value: -2, x: 585, y: 360, active: true },
-        ],
-        dropZones: [
-          {
-            id: "add",
-            operation: "addition",
-            name: "addition",
-            x1: 50,
-            y1: 50,
-            x2: 450,
-            y2: 350,
-          },
-          {
-            id: "sub",
-            operation: "subtraction",
-            name: "subtraction",
-            x1: 550,
-            y1: 50,
-            x2: 950,
-            y2: 350,
-          },
-          {
-            id: "mul",
-            operation: "multiplication",
-            name: "multiplication",
-            x1: 50,
-            y1: 450,
-            x2: 450,
-            y2: 750,
-          },
-          {
-            id: "div",
-            operation: "division",
-            name: "division",
-            x1: 550,
-            y1: 450,
-            x2: 950,
-            y2: 750,
-          },
-        ],
-      };
-      this.$store.commit("loadState", payload);
-    },
-    exercise5: function() {
-      let payload = {
-        integers: [
-          { id: "o0", value: 1, x: 460, y: 60, active: true },
-          { id: "o1", value: 2, x: 460, y: 260, active: true },
-          { id: "o2", value: 4, x: 460, y: 460, active: true },
-          { id: "o3", value: 8, x: 460, y: 660, active: true },
-          { id: "o4", value: -1, x: 85, y: 360, active: true },
-          { id: "o5", value: -2, x: 335, y: 360, active: true },
-          { id: "o6", value: -4, x: 585, y: 360, active: true },
-          { id: "o7", value: -8, x: 835, y: 360, active: true },
+          { id: "o0", value: -3, x: 460, y: 60, active: true },
+          { id: "o1", value: -3, x: 460, y: 260, active: true },
+          { id: "o2", value: -5, x: 460, y: 460, active: true },
+          { id: "o3", value: -2, x: 460, y: 660, active: true },
         ],
         dropZones: [
           {
@@ -214,24 +192,6 @@ export default {
             x1: 50,
             y1: 50,
             x2: 450,
-            y2: 350,
-          },
-          {
-            id: "mul",
-            operation: "multiplication",
-            name: "?",
-            x1: 550,
-            y1: 50,
-            x2: 950,
-            y2: 350,
-          },
-          {
-            id: "div",
-            operation: "division",
-            name: "?",
-            x1: 50,
-            y1: 450,
-            x2: 450,
             y2: 750,
           },
           {
@@ -239,7 +199,7 @@ export default {
             operation: "addition",
             name: "?",
             x1: 550,
-            y1: 450,
+            y1: 50,
             x2: 950,
             y2: 750,
           },
