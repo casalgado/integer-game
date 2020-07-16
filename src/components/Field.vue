@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import Player from "../game/Player";
+import Player from "./Player";
 
 export default {
   name: "Field",
@@ -41,13 +41,16 @@ export default {
       let integers = this.integers;
       for (let i = 0; i < integers.length; i++) {
         let obj = integers[i];
-        const domObj = document.getElementById(obj.id);
-        domObj.style.top = `${obj.y}px`;
-        domObj.style.left = `${obj.x}px`;
+        if (document.getElementById(obj.id)) {
+          const domObj = document.getElementById(obj.id);
+          domObj.style.top = `${obj.y}px`;
+          domObj.style.left = `${obj.x}px`;
+        }
       }
     },
     onDrop: function(evt) {
       // to move object ...
+      this.$store.commit("saveHistory");
       const pid = evt.dataTransfer.getData("pid");
       let bounds = document.getElementById("main").getBoundingClientRect();
       this.$store.commit("modifyInteger", {
@@ -77,7 +80,6 @@ export default {
           }
         }
       }
-
       this.drawIntegers();
     },
     compute(target, selected, operation) {
@@ -154,8 +156,14 @@ export default {
     integers: function() {
       return this.$store.getters.integers;
     },
+    loaded: function() {
+      return this.$store.state.loaded;
+    },
     dropZones: function() {
       return this.$store.getters.dropZones;
+    },
+    historyPosition: function() {
+      return this.$store.state.historyPosition;
     },
   },
   mounted() {
@@ -163,6 +171,15 @@ export default {
   },
   watch: {
     integers() {
+      this.drawIntegers();
+    },
+    loaded() {
+      setTimeout(() => {
+        this.drawIntegers();
+      }, 0);
+    },
+    historyPosition() {
+      console.log("hello");
       this.drawIntegers();
     },
   },

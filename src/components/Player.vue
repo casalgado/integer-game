@@ -33,7 +33,7 @@ export default {
     },
     isrc: function() {
       let polarity = this.value < 0 ? "n" : "p";
-      return require("./../../assets/" + polarity + ".png");
+      return require("./../assets/" + polarity + ".png");
     },
   },
   computed: {

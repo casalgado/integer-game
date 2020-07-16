@@ -1,6 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Field from "../components/game/Field.vue";
+import Field from "../components/Field.vue";
 
 Vue.use(VueRouter);
 

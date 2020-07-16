@@ -25,15 +25,168 @@
         Exercise 5
       </button>
     </li>
+    <li>
+      <button @click="exercise6">
+        Exercise 6
+      </button>
+    </li>
+    <li>
+      <button @click="exercise7">
+        Exercise 7
+      </button>
+    </li>
+    <li>
+      <button @click="exercise8">
+        Exercise 8
+      </button>
+    </li>
+    <li>
+      <button @click="exercise9">
+        Exercise 9
+      </button>
+    </li>
+    <li>
+      <ActionUndo />
+    </li>
   </ul>
 </template>
 
 <script>
+import ActionUndo from "./ActionUndo";
 export default {
   name: "Sidebar",
+  components: { ActionUndo },
   methods: {
     exercise1: function() {
       let payload = {
+        answer: { value: 10, hidden: false, solved: false },
+        integers: [
+          { id: "o0", value: 1, x: 85, y: 360, active: true },
+          { id: "o1", value: 4, x: 335, y: 360, active: true },
+          { id: "o2", value: 7, x: 585, y: 360, active: true },
+          { id: "o3", value: 12, x: 835, y: 360, active: true },
+        ],
+        dropZones: [
+          {
+            id: "add",
+            operation: "addition",
+            name: "addition",
+            x1: 50,
+            y1: 50,
+            x2: 950,
+            y2: 350,
+          },
+          {
+            id: "sub",
+            operation: "subtraction",
+            name: "subtraction",
+            x1: 50,
+            y1: 450,
+            x2: 950,
+            y2: 750,
+          },
+        ],
+      };
+      this.$store.commit("loadState", payload);
+    },
+    exercise2: function() {
+      let payload = {
+        answer: { value: -5, hidden: false, solved: false },
+        integers: [
+          { id: "o0", value: 6, x: 85, y: 360, active: true },
+          { id: "o1", value: 4, x: 335, y: 360, active: true },
+          { id: "o2", value: -7, x: 585, y: 360, active: true },
+          { id: "o3", value: -8, x: 835, y: 360, active: true },
+        ],
+        dropZones: [
+          {
+            id: "add",
+            operation: "addition",
+            name: "addition",
+            x1: 50,
+            y1: 50,
+            x2: 950,
+            y2: 350,
+          },
+          {
+            id: "sub",
+            operation: "subtraction",
+            name: "subtraction",
+            x1: 50,
+            y1: 450,
+            x2: 950,
+            y2: 750,
+          },
+        ],
+      };
+      this.$store.commit("loadState", payload);
+    },
+    exercise3: function() {
+      let payload = {
+        answer: { value: 12, hidden: false, solved: false },
+        integers: [
+          { id: "o0", value: 1, x: 85, y: 360, active: true },
+          { id: "o1", value: 4, x: 335, y: 360, active: true },
+          { id: "o2", value: -7, x: 585, y: 360, active: true },
+        ],
+        dropZones: [
+          {
+            id: "add",
+            operation: "addition",
+            name: "addition",
+            x1: 50,
+            y1: 50,
+            x2: 950,
+            y2: 350,
+          },
+          {
+            id: "sub",
+            operation: "subtraction",
+            name: "subtraction",
+            x1: 50,
+            y1: 450,
+            x2: 950,
+            y2: 750,
+          },
+        ],
+      };
+      this.$store.commit("loadState", payload);
+    },
+    exercise4: function() {
+      let payload = {
+        answer: { value: 6, hidden: false, solved: true },
+        integers: [
+          { id: "o0", value: 3, x: 460, y: 60, active: true },
+          { id: "o1", value: 5, x: 460, y: 260, active: true },
+          { id: "o2", value: 2, x: 460, y: 460, active: true },
+          { id: "o3", value: 5, x: 460, y: 660, active: true },
+        ],
+        dropZones: [
+          {
+            id: "mul",
+            operation: "multiplication",
+            name: "multiplication",
+            x1: 50,
+            y1: 50,
+            x2: 450,
+            y2: 750,
+          },
+          {
+            id: "div",
+            operation: "division",
+            name: "division",
+            x1: 550,
+            y1: 50,
+            x2: 950,
+            y2: 750,
+          },
+        ],
+      };
+      this.$store.commit("loadState", payload);
+    },
+    exercise5: function() {
+      let payload = {
+        answer: { value: 16, hidden: false, solved: true },
         integers: [
           { id: "o0", value: -1, x: 460, y: 60, active: true },
           { id: "o1", value: 2, x: 460, y: 260, active: true },
@@ -63,8 +216,9 @@ export default {
       };
       this.$store.commit("loadState", payload);
     },
-    exercise2: function() {
+    exercise6: function() {
       let payload = {
+        answer: { value: 0, hidden: false, solved: true },
         integers: [
           { id: "o0", value: 5, x: 85, y: 360, active: true },
           { id: "o1", value: 3, x: 335, y: 360, active: true },
@@ -95,8 +249,9 @@ export default {
       this.$store.commit("loadState", payload);
     },
 
-    exercise3: function() {
+    exercise7: function() {
       let payload = {
+        answer: { value: -4, hidden: false, solved: true },
         integers: [
           { id: "o1", value: 5, x: 460, y: 460, active: true },
           { id: "o2", value: 4, x: 460, y: 260, active: true },
@@ -144,8 +299,9 @@ export default {
       };
       this.$store.commit("loadState", payload);
     },
-    exercise4: function() {
+    exercise8: function() {
       let payload = {
+        answer: { value: 108, hidden: true, solved: true },
         integers: [
           { id: "o1", value: 3, x: 460, y: 260, active: true },
           { id: "o2", value: -3, x: 460, y: 460, active: true },
@@ -194,7 +350,7 @@ export default {
       };
       this.$store.commit("loadState", payload);
     },
-    exercise5: function() {
+    exercise9: function() {
       let payload = {
         integers: [
           { id: "o0", value: 1, x: 460, y: 60, active: true },

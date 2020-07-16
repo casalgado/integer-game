@@ -6,9 +6,8 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     integers: [
-      { id: "o0", value: 2, x: 460, y: 150, active: true },
-      { id: "o1", value: 1, x: 460, y: 250, active: true },
-      { id: "o2", value: 0, x: 460, y: 350, active: true },
+      { id: "o0", value: 2, x: 460, y: 175, active: true },
+      { id: "o1", value: 1, x: 460, y: 275, active: true },
       { id: "o3", value: -1, x: 460, y: 450, active: true },
       { id: "o4", value: -2, x: 460, y: 550, active: true },
     ],
@@ -50,6 +49,9 @@ export default new Vuex.Store({
         y2: 750,
       },
     ],
+    history: [],
+    historyPosition: 0,
+    loaded: 0,
   },
   getters: {
     getIntegerById: (state) => (id) => {
@@ -68,6 +70,7 @@ export default new Vuex.Store({
       state.dropZones = [];
       state.integers = payload.integers;
       state.dropZones = payload.dropZones;
+      state.loaded++;
     },
     modifyInteger(state, payload) {
       // this mutation requires payload to have property of id.
@@ -83,6 +86,19 @@ export default new Vuex.Store({
     removeInteger(state, payload) {
       // this mutation requires payload to have property of id.
       state.integers.find((i) => i.id === payload.id).active = false;
+    },
+    saveHistory(state) {
+      let snapshot = [];
+      state.integers.forEach((e) => {
+        snapshot.push(JSON.parse(JSON.stringify(e)));
+      });
+      state.history.unshift(snapshot);
+      state.historyPosition = 0;
+    },
+    undo(state) {
+      console.log(state.history[state.historyPosition]);
+      state.integers = [...state.history[state.historyPosition]];
+      state.historyPosition++;
     },
   },
   actions: {},
