@@ -6,12 +6,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     answer: { value: 0, hidden: true, solved: false, active: false },
-    integers: [
-      { id: "o0", value: 2, x: 460, y: 175, active: true },
-      { id: "o1", value: 1, x: 460, y: 275, active: true },
-      { id: "o3", value: -1, x: 460, y: 450, active: true },
-      { id: "o4", value: -2, x: 460, y: 550, active: true },
-    ],
+    integers: [],
     dropZones: [
       {
         id: "add",
