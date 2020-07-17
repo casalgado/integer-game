@@ -152,14 +152,14 @@ export default {
         const center = this.getCenter(integers[i]);
         if (
           obj.id !== integers[i].id &&
-          Math.abs(center.x - centerCoordinates.x) < 80 &&
-          Math.abs(center.y - centerCoordinates.y) < 80
+          Math.abs(center.x - centerCoordinates.x) < 40 &&
+          Math.abs(center.y - centerCoordinates.y) < 40
         )
           return integers[i];
       }
       if (
-        Math.abs(500 - centerCoordinates.x) < 80 &&
-        Math.abs(400 - centerCoordinates.y) < 80
+        Math.abs(500 - centerCoordinates.x) < 40 &&
+        Math.abs(400 - centerCoordinates.y) < 40
       ) {
         return "answerBox";
       }

@@ -37,12 +37,12 @@
     </li>
     <li>
       <button @click="exercise8">
-        Exercise 8
+        Bonus 1
       </button>
     </li>
     <li>
       <button @click="exercise9">
-        Exercise 9
+        Bonus 2
       </button>
     </li>
     <li>
