@@ -42,11 +42,17 @@ export default {
   },
   watch: {
     active() {
-      console.log("hi");
       if (this.active) {
         this.classname += " active";
       } else {
         this.reset();
+      }
+    },
+    solved() {
+      if (this.solved == "correct") {
+        this.classname += " correct";
+      } else if (this.solved == "incorrect") {
+        this.classname += " incorrect";
       }
     },
   },
@@ -64,6 +70,7 @@ export default {
   position: absolute;
   top: 360px;
   left: 460px;
+  opacity: 0.6;
 }
 
 .answerTitle {
@@ -97,6 +104,16 @@ export default {
 }
 
 .active {
-  border: 2px solid red;
+  opacity: 1;
+}
+
+.correct {
+  color: white;
+  background-color: green;
+}
+
+.incorrect {
+  color: white;
+  background-color: red;
 }
 </style>

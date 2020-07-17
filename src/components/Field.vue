@@ -68,20 +68,35 @@ export default {
       let selected = this.$store.getters.getIntegerById(pid);
       let target = this.returnCollidingObject(selected);
       if (target) {
-        const zone = this.getZone(target);
-        if (zone) {
-          let newValue = this.compute(target, selected, zone.operation);
-          if (newValue % 1 === 0) {
-            this.$store.commit("modifyInteger", {
-              id: target.id,
-              value: newValue,
-            });
-            this.$store.commit("removeInteger", {
-              id: selected.id,
-            });
+        // if target is answerbox
+        if (target == "answerBox") {
+          let answer = this.$store.state.answer;
+          console.log(answer);
+          console.log(selected);
+          if (answer.active) {
+            if (answer.value == selected.value) {
+              this.$store.commit("solvedAnswer", "correct");
+            } else {
+              this.$store.commit("solvedAnswer", "incorrect");
+            }
+          }
+        } else {
+          const zone = this.getZone(target);
+          if (zone) {
+            let newValue = this.compute(target, selected, zone.operation);
+            if (newValue % 1 === 0) {
+              this.$store.commit("modifyInteger", {
+                id: target.id,
+                value: newValue,
+              });
+              this.$store.commit("removeInteger", {
+                id: selected.id,
+              });
+            }
           }
         }
       }
+
       this.drawIntegers();
     },
     compute(target, selected, operation) {
@@ -141,6 +156,12 @@ export default {
           Math.abs(center.y - centerCoordinates.y) < 80
         )
           return integers[i];
+      }
+      if (
+        Math.abs(500 - centerCoordinates.x) < 80 &&
+        Math.abs(400 - centerCoordinates.y) < 80
+      ) {
+        return "answerBox";
       }
       return null;
     },

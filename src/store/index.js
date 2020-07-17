@@ -99,12 +99,16 @@ export default new Vuex.Store({
       state.historyPosition = 0;
     },
     undo(state) {
-      console.log(state.history[state.historyPosition]);
-      state.integers = [...state.history[state.historyPosition]];
-      state.historyPosition++;
+      if (state.history[state.historyPosition]) {
+        state.integers = [...state.history[state.historyPosition]];
+        state.historyPosition++;
+      }
     },
     activeAnswer(state, payload) {
       Object.assign(state.answer, { active: payload });
+    },
+    solvedAnswer(state, payload) {
+      Object.assign(state.answer, { solved: payload });
     },
   },
   actions: {},
