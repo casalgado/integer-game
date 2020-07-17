@@ -14,7 +14,7 @@
     >
       <p>{{ obj.name }}</p>
     </div>
-
+    <AnswerBox :answer="answer" :key="loaded" />
     <Player
       v-for="obj in integers"
       :key="obj.id"
@@ -26,11 +26,13 @@
 
 <script>
 import Player from "./Player";
+import AnswerBox from "./AnswerBox";
 
 export default {
   name: "Field",
   components: {
     Player,
+    AnswerBox,
   },
   data() {
     return {};
@@ -103,7 +105,6 @@ export default {
       }
       return newValue;
     },
-
     getCenter: function(integer) {
       return { x: integer.x + 40, y: integer.y + 40 };
     },
@@ -165,6 +166,9 @@ export default {
     historyPosition: function() {
       return this.$store.state.historyPosition;
     },
+    answer: function() {
+      return this.$store.state.answer;
+    },
   },
   mounted() {
     this.drawIntegers();
@@ -172,6 +176,11 @@ export default {
   watch: {
     integers() {
       this.drawIntegers();
+      if (this.integers.length == 1) {
+        this.$store.commit("activeAnswer", true);
+      } else {
+        this.$store.commit("activeAnswer", false);
+      }
     },
     loaded() {
       setTimeout(() => {
@@ -179,8 +188,9 @@ export default {
       }, 0);
     },
     historyPosition() {
-      console.log("hello");
-      this.drawIntegers();
+      setTimeout(() => {
+        this.drawIntegers();
+      }, 0);
     },
   },
 };

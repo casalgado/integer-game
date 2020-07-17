@@ -59,7 +59,7 @@ export default {
   methods: {
     exercise1: function() {
       let payload = {
-        answer: { value: 10, hidden: false, solved: false },
+        answer: { value: 10, hidden: false, solved: false, active: false },
         integers: [
           { id: "o0", value: 1, x: 85, y: 360, active: true },
           { id: "o1", value: 4, x: 335, y: 360, active: true },
@@ -91,7 +91,7 @@ export default {
     },
     exercise2: function() {
       let payload = {
-        answer: { value: -5, hidden: false, solved: false },
+        answer: { value: -5, hidden: false, solved: false, active: false },
         integers: [
           { id: "o0", value: 6, x: 85, y: 360, active: true },
           { id: "o1", value: 4, x: 335, y: 360, active: true },
@@ -123,7 +123,7 @@ export default {
     },
     exercise3: function() {
       let payload = {
-        answer: { value: 12, hidden: false, solved: false },
+        answer: { value: 12, hidden: false, solved: false, active: false },
         integers: [
           { id: "o0", value: 1, x: 85, y: 360, active: true },
           { id: "o1", value: 4, x: 335, y: 360, active: true },
@@ -154,7 +154,7 @@ export default {
     },
     exercise4: function() {
       let payload = {
-        answer: { value: 6, hidden: false, solved: true },
+        answer: { value: 6, hidden: false, solved: false, active: false },
         integers: [
           { id: "o0", value: 3, x: 460, y: 60, active: true },
           { id: "o1", value: 5, x: 460, y: 260, active: true },
@@ -186,7 +186,7 @@ export default {
     },
     exercise5: function() {
       let payload = {
-        answer: { value: 16, hidden: false, solved: true },
+        answer: { value: 16, hidden: false, solved: false, active: false },
         integers: [
           { id: "o0", value: -1, x: 460, y: 60, active: true },
           { id: "o1", value: 2, x: 460, y: 260, active: true },
@@ -218,7 +218,7 @@ export default {
     },
     exercise6: function() {
       let payload = {
-        answer: { value: 0, hidden: false, solved: true },
+        answer: { value: 0, hidden: false, solved: false, active: false },
         integers: [
           { id: "o0", value: 5, x: 85, y: 360, active: true },
           { id: "o1", value: 3, x: 335, y: 360, active: true },
@@ -251,7 +251,7 @@ export default {
 
     exercise7: function() {
       let payload = {
-        answer: { value: -4, hidden: false, solved: true },
+        answer: { value: -4, hidden: false, solved: false, active: false },
         integers: [
           { id: "o1", value: 5, x: 460, y: 460, active: true },
           { id: "o2", value: 4, x: 460, y: 260, active: true },
@@ -301,7 +301,7 @@ export default {
     },
     exercise8: function() {
       let payload = {
-        answer: { value: 108, hidden: true, solved: true },
+        answer: { value: 108, hidden: true, solved: false, active: false },
         integers: [
           { id: "o1", value: 3, x: 460, y: 260, active: true },
           { id: "o2", value: -3, x: 460, y: 460, active: true },
@@ -352,6 +352,7 @@ export default {
     },
     exercise9: function() {
       let payload = {
+        answer: { value: 0, hidden: true, solved: false, active: false },
         integers: [
           { id: "o0", value: 1, x: 460, y: 60, active: true },
           { id: "o1", value: 2, x: 460, y: 260, active: true },
@@ -407,10 +408,10 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 li {
   list-style-type: none;
-  margin: 25px;
+  margin-top: 25px;
 }
 
 ul {
@@ -423,7 +424,7 @@ button {
   background-color: rgb(26, 123, 249);
   border: 1px solid rgb(15, 119, 255);
   border-radius: 5px;
-  width: 120%;
+  width: 100%;
   height: 35px;
   color: seashell;
   font-weight: bold;

@@ -5,6 +5,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
+    answer: { value: 0, hidden: true, solved: false, active: false },
     integers: [
       { id: "o0", value: 2, x: 460, y: 175, active: true },
       { id: "o1", value: 1, x: 460, y: 275, active: true },
@@ -68,8 +69,10 @@ export default new Vuex.Store({
     loadState(state, payload) {
       state.integers = [];
       state.dropZones = [];
+      state.answer = {};
       state.integers = payload.integers;
       state.dropZones = payload.dropZones;
+      state.answer = payload.answer;
       state.loaded++;
     },
     modifyInteger(state, payload) {
@@ -99,6 +102,9 @@ export default new Vuex.Store({
       console.log(state.history[state.historyPosition]);
       state.integers = [...state.history[state.historyPosition]];
       state.historyPosition++;
+    },
+    activeAnswer(state, payload) {
+      Object.assign(state.answer, { active: payload });
     },
   },
   actions: {},
