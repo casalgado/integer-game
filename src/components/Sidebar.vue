@@ -158,8 +158,8 @@ export default {
         integers: [
           { id: "o0", value: 3, x: 460, y: 60, active: true },
           { id: "o1", value: 5, x: 460, y: 260, active: true },
-          { id: "o2", value: 2, x: 460, y: 460, active: true },
-          { id: "o3", value: 5, x: 460, y: 660, active: true },
+          { id: "o2", value: 5, x: 460, y: 460, active: true },
+          { id: "o3", value: 2, x: 460, y: 160, active: true },
         ],
         dropZones: [
           {
@@ -191,7 +191,7 @@ export default {
           { id: "o0", value: -1, x: 460, y: 60, active: true },
           { id: "o1", value: 2, x: 460, y: 260, active: true },
           { id: "o2", value: -4, x: 460, y: 460, active: true },
-          { id: "o3", value: 8, x: 460, y: 660, active: true },
+          { id: "o3", value: 8, x: 460, y: 160, active: true },
         ],
         dropZones: [
           {
@@ -305,7 +305,7 @@ export default {
         integers: [
           { id: "o1", value: 3, x: 460, y: 260, active: true },
           { id: "o2", value: -3, x: 460, y: 460, active: true },
-          { id: "o3", value: -4, x: 460, y: 660, active: true },
+          { id: "o3", value: -4, x: 460, y: 60, active: true },
           { id: "o4", value: 1, x: 335, y: 360, active: true },
           { id: "o5", value: -2, x: 585, y: 360, active: true },
         ],
@@ -357,7 +357,7 @@ export default {
           { id: "o0", value: 1, x: 460, y: 60, active: true },
           { id: "o1", value: 2, x: 460, y: 260, active: true },
           { id: "o2", value: 4, x: 460, y: 460, active: true },
-          { id: "o3", value: 8, x: 460, y: 660, active: true },
+          { id: "o3", value: 8, x: 460, y: 160, active: true },
           { id: "o4", value: -1, x: 85, y: 360, active: true },
           { id: "o5", value: -2, x: 335, y: 360, active: true },
           { id: "o6", value: -4, x: 585, y: 360, active: true },
