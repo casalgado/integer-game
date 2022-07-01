@@ -1,50 +1,30 @@
 <template>
   <ul id="sidebar">
     <li>
-      <button @click="exercise1">
-        Exercise 1
-      </button>
+      <button @click="exercise1">Exercise 1</button>
     </li>
     <li>
-      <button @click="exercise2">
-        Exercise 2
-      </button>
+      <button @click="exercise2">Exercise 2</button>
     </li>
     <li>
-      <button @click="exercise3">
-        Exercise 3
-      </button>
+      <button @click="exercise3">Exercise 3</button>
     </li>
     <li>
-      <button @click="exercise4">
-        Exercise 4
-      </button>
+      <button @click="exercise4">Exercise 4</button>
     </li>
     <li>
-      <button @click="exercise5">
-        Exercise 5
-      </button>
+      <button @click="exercise5">Exercise 5</button>
     </li>
     <li>
-      <button @click="exercise6">
-        Exercise 6
-      </button>
+      <button @click="exercise6">Exercise 6</button>
     </li>
     <li>
-      <button @click="exercise7">
-        Exercise 7
-      </button>
+      <button @click="exercise7">Exercise 7</button>
     </li>
     <li>
-      <button @click="exercise8">
-        Bonus 1
-      </button>
+      <button @click="exercise8">Bonus 1</button>
     </li>
-    <li>
-      <button @click="exercise9">
-        Bonus 2
-      </button>
-    </li>
+
     <li>
       <ActionUndo />
     </li>
@@ -57,7 +37,7 @@ export default {
   name: "Sidebar",
   components: { ActionUndo },
   methods: {
-    exercise1: function() {
+    exercise1: function () {
       let payload = {
         answer: { value: 10, hidden: false, solved: false, active: false },
         integers: [
@@ -89,7 +69,7 @@ export default {
       };
       this.$store.commit("loadState", payload);
     },
-    exercise2: function() {
+    exercise2: function () {
       let payload = {
         answer: { value: -5, hidden: false, solved: false, active: false },
         integers: [
@@ -121,7 +101,7 @@ export default {
       };
       this.$store.commit("loadState", payload);
     },
-    exercise3: function() {
+    exercise3: function () {
       let payload = {
         answer: { value: 12, hidden: false, solved: false, active: false },
         integers: [
@@ -152,7 +132,7 @@ export default {
       };
       this.$store.commit("loadState", payload);
     },
-    exercise4: function() {
+    exercise4: function () {
       let payload = {
         answer: { value: 6, hidden: false, solved: false, active: false },
         integers: [
@@ -184,7 +164,7 @@ export default {
       };
       this.$store.commit("loadState", payload);
     },
-    exercise5: function() {
+    exercise5: function () {
       let payload = {
         answer: { value: 16, hidden: false, solved: false, active: false },
         integers: [
@@ -216,7 +196,7 @@ export default {
       };
       this.$store.commit("loadState", payload);
     },
-    exercise6: function() {
+    exercise6: function () {
       let payload = {
         answer: { value: 0, hidden: false, solved: false, active: false },
         integers: [
@@ -249,7 +229,7 @@ export default {
       this.$store.commit("loadState", payload);
     },
 
-    exercise7: function() {
+    exercise7: function () {
       let payload = {
         answer: { value: -4, hidden: false, solved: false, active: false },
         integers: [
@@ -299,7 +279,7 @@ export default {
       };
       this.$store.commit("loadState", payload);
     },
-    exercise8: function() {
+    exercise8: function () {
       let payload = {
         answer: { value: 108, hidden: true, solved: false, active: false },
         integers: [
@@ -350,7 +330,7 @@ export default {
       };
       this.$store.commit("loadState", payload);
     },
-    exercise9: function() {
+    exercise9: function () {
       let payload = {
         answer: { value: 0, hidden: true, solved: false, active: false },
         integers: [

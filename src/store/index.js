@@ -5,14 +5,11 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    answer: { value: 0, hidden: true, solved: false, active: false },
+    answer: { value: -1, hidden: false, solved: false, active: false },
+    intro: true,
     integers: [
-      { id: "o1", value: 3, x: 460, y: 260, active: true },
-      { id: "o2", value: -1, x: 460, y: 460, active: true },
-      { id: "o4", value: 1, x: 85, y: 360, active: true },
-      { id: "o5", value: 2, x: 335, y: 360, active: true },
-      { id: "o6", value: -2, x: 585, y: 360, active: true },
-      { id: "o7", value: -3, x: 835, y: 360, active: true },
+      { id: "o1", value: 2, x: 85, y: 360, active: true },
+      { id: "o2", value: 3, x: 335, y: 360, active: true },
     ],
     dropZones: [
       {
@@ -20,32 +17,14 @@ export default new Vuex.Store({
         operation: "addition",
         name: "addition",
         x1: 50,
-        y1: 50,
-        x2: 450,
-        y2: 350,
-      },
-      {
-        id: "sub",
-        operation: "subtraction",
-        name: "subtraction",
-        x1: 550,
-        y1: 50,
-        x2: 950,
-        y2: 350,
-      },
-      {
-        id: "mul",
-        operation: "multiplication",
-        name: "multiplication",
-        x1: 50,
         y1: 450,
         x2: 450,
         y2: 750,
       },
       {
-        id: "div",
-        operation: "division",
-        name: "division",
+        id: "sub",
+        operation: "subtraction",
+        name: "subtraction",
         x1: 550,
         y1: 450,
         x2: 950,
@@ -69,6 +48,7 @@ export default new Vuex.Store({
   },
   mutations: {
     loadState(state, payload) {
+      state.intro = false;
       state.integers = [];
       state.dropZones = [];
       state.answer = {};

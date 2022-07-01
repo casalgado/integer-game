@@ -5,6 +5,7 @@
     @dragover.prevent
     @dragenter.prevent
   >
+    <TheIntro v-if="intro" />
     <div
       v-for="obj in dropZones"
       :key="obj.id"
@@ -27,19 +28,21 @@
 <script>
 import Player from "./Player";
 import AnswerBox from "./AnswerBox";
+import TheIntro from "./TheIntro.vue";
 
 export default {
   name: "Field",
   components: {
     Player,
     AnswerBox,
+    TheIntro,
   },
   data() {
     return {};
   },
 
   methods: {
-    drawIntegers: function() {
+    drawIntegers: function () {
       let integers = this.integers;
       for (let i = 0; i < integers.length; i++) {
         let obj = integers[i];
@@ -50,7 +53,7 @@ export default {
         }
       }
     },
-    onDrop: function(evt) {
+    onDrop: function (evt) {
       // to move object ...
       this.$store.commit("saveHistory");
       const pid = evt.dataTransfer.getData("pid");
@@ -120,10 +123,10 @@ export default {
       }
       return newValue;
     },
-    getCenter: function(integer) {
+    getCenter: function (integer) {
       return { x: integer.x + 40, y: integer.y + 40 };
     },
-    getZone: function(target) {
+    getZone: function (target) {
       let zones = this.dropZones;
       let center = this.getCenter(target);
       for (let i = 0; i < zones.length; i++) {
@@ -138,14 +141,14 @@ export default {
       }
       return null;
     },
-    objectsCollide: function(a, b) {
+    objectsCollide: function (a, b) {
       if (Math.abs(a.x - b.x) < 80 && Math.abs(a.y - b.y) < 80) {
         return true;
       } else {
         return false;
       }
     },
-    returnCollidingObject: function(obj) {
+    returnCollidingObject: function (obj) {
       let integers = this.integers;
       let centerCoordinates = this.getCenter(obj);
       for (let i = 0; i < integers.length; i++) {
@@ -165,7 +168,7 @@ export default {
       }
       return null;
     },
-    zoneCoordinates: function(obj) {
+    zoneCoordinates: function (obj) {
       let t = obj.y1;
       let l = obj.x1;
       let h = obj.y2 - obj.y1;
@@ -175,20 +178,23 @@ export default {
     },
   },
   computed: {
-    integers: function() {
+    integers: function () {
       return this.$store.getters.integers;
     },
-    loaded: function() {
+    loaded: function () {
       return this.$store.state.loaded;
     },
-    dropZones: function() {
+    dropZones: function () {
       return this.$store.getters.dropZones;
     },
-    historyPosition: function() {
+    historyPosition: function () {
       return this.$store.state.historyPosition;
     },
-    answer: function() {
+    answer: function () {
       return this.$store.state.answer;
+    },
+    intro: function () {
+      return this.$store.state.intro;
     },
   },
   mounted() {
